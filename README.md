@@ -22,10 +22,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/JihyuunAngela/hungry-notes">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">HUNGRY NOTES</h3>
 
   <p align="center">
@@ -114,19 +110,19 @@ This is an example of how to list things you need to use the software and how to
 ### Installation
 
 1. Clone the repo
-   ```sh
+   ```
    git clone https://github.com/JihyuunAngela/hungry-notes.git
    ```
 2. Install NPM packages
-   ```sh
+   ```
   npm install --save-d express mongoose passport express-session connect-mongo method-override morgan express-flash
    ```
 3. Create an .env file in the config folder
-    ```js
+    ```
     touch .env
     ```
 4. Enter your PORT, DB and cloudinary name, API key and secret
-   ```js
+   ```
    PORT = 'ENTER PORT'
     DB_STRING = 'ENTER DB_STRING'
     CLOUD_NAME = 'ENTER CLOUD_NAME'
@@ -157,6 +153,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
     - [x] Delete
 - [ ] Add option to choose between your own recipe vs a link to a recipe found online
 - [ ] Add password reset for account users
+- [ ] Update view
 
 See the [open issues](https://github.com/JihyuunAngela/hungry-notes/issues) for a full list of proposed features (and known issues).
 
