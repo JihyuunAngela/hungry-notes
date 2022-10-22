@@ -1,22 +1,42 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
   },
-  image: {
+  // image: {
+  //   type: String,
+  //   require: false,
+  // },
+  // cloudinaryId: {
+  //   type: String,
+  //   require: false,
+  // },
+  // imageLink: {
+  //   type: String,
+  //   require: false,
+  // },
+  ingredients: {
     type: String,
-    require: true,
+    required: false,
   },
-  cloudinaryId: {
+  instructions: {
     type: String,
-    require: true,
+    required: false,
   },
-  caption: {
+
+  // linked recipe only
+  link: {
     type: String,
-    required: true,
+    required: false,
   },
+
+  // all
   likes: {
     type: Number,
     required: true,

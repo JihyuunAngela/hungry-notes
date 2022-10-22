@@ -151,9 +151,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Add function to post and delete posts
     - [x] Add
     - [x] Delete
-- [ ] Add option to choose between your own recipe vs a link to a recipe found online
+- [x] Add option to choose between your own recipe vs a link to a recipe found online
+- [ ] Search db for recipes
 - [ ] Add password reset for account users
-- [ ] Update view
+- [ ] Create folders for categories
 
 See the [open issues](https://github.com/JihyuunAngela/hungry-notes/issues) for a full list of proposed features (and known issues).
 

@@ -8,6 +8,13 @@ const methodOverride = require("method-override"); // override methods
 const flash = require("express-flash");
 const logger = require("morgan"); // for logs
 const connectDB = require("./config/database");
+const bodyParser = require('body-parser');
+const request = require('request');
+const cheerio = require('cheerio');
+const fs = require('fs');
+
+
+// Routes
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
@@ -28,8 +35,8 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 //Body Parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //Logging
 app.use(logger("dev"));
@@ -42,12 +49,18 @@ app.use(
   session({
     secret: "keyboard cat",
     resave: false, // don't save session if it wasn't modified
-    saveUninitialized: false, // don't create session until something is stored
+    saveUninitialized: true, // don't create session until something is stored
     store: MongoStore.create({
         mongoUrl: process.env.DB_STRING,
       }), // store session in DB
   })
 );
+
+// Auth
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next() ;
+});
 
 // Passport middleware
 app.use(passport.initialize());

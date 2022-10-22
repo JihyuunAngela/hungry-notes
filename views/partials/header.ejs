@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Binary Upload Boom</title>
+    <title>Hungry Notes</title>
     <link
       rel="icon"
       type="image/png"
@@ -23,14 +23,45 @@
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
     />
+    <script src="https://kit.fontawesome.com/27359b90e3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <header class="container">
+
+      <nav>
+                <!-- 
+                  /// CORRECT FILE WHEN UPLOADING FILES TO SERVER
+                  if (window.location.pathname == "/saved") { 
+                    -->
+
+        <% if ("a" == "v") { %>
+          <i class="fa-solid fa-bookmark"></i>
+        <% } else { %>
+          <a href ="/saved"><i class="fa-regular fa-bookmark"></i></a>
+        <% } %>
+        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+
+        <span>
+          <% var user; %>
+          <% user = user || undefined; %>
+
+          <%if (user) { %>
+            hi, <a href="/profile"><%= user.userName %></a> /  <form class="removeForm" action="/logout" method="POST" id ="logout">
+              <input type="submit" value="logout">
+          </form>
+          <% } else { %>
+          <a href="/login"> Login</a> / <a href="/signup"> Signup</a>
+          <% } %>
+        </span>
+      </nav>
+
       <div class="text-center">
-        <h1 class=""><a href="/profile">Binary Upload Boom</a></h1>
-        <span>The #100Devs Social Network</span>
+        <h1 class=""><a href="/">Hungry Notes</a></h1>
+        <span>What to eat...</span>
+
+        <p style="font-size: 75px;"><a href="/add"><i class="fa-solid fa-circle-plus"></i></a></p>
+        
       </div>
     </header>
-  </body>
-</html>
+    <div class="scroll-up"><a href="#"><i class="fa-solid fa-arrow-up"></i></a></div>
