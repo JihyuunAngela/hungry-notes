@@ -115,7 +115,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 2. Install NPM packages
    ```
-  npm install --save-d express mongoose passport express-session connect-mongo method-override morgan express-flash
+   npm install --save-d express mongoose passport express-session connect-mongo method-override morgan express-flash
    ```
 3. Create an .env file in the config folder
     ```
