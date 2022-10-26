@@ -1,0 +1,20 @@
+<%- include('partials/header') -%>
+
+<div>
+    <h1>Edit Comment</h1>
+    <div>
+        <form
+        action="/comments/editComment/<%= comment._id %>?_method=PUT"
+        method="POST"
+        class="col-3"
+        >
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="<%= comment.comment %>">
+            </div>
+            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer') -%>

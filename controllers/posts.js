@@ -7,12 +7,14 @@ const Post = require("../models/Post");
 const SavedPost = require("../models/SavedPost");
 const Comment = require("../models/Comment");
 const { render } = require('ejs');
+const User = require('../models/User');
 
 module.exports = {
-  getProfile: async (req, res) => {
+  getAuthorProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id }); // limit to the user
-      res.render("profile.ejs", { posts: posts, user: req.user});
+      const author = await User.findById(req.params.id).lean()
+      const posts = await Post.find({ user: req.params.id }).lean() // limit to the user
+      res.render("profile.ejs", { posts: posts, author: author, user: req.user});
     } catch (err) {
       console.log(err);
     }
@@ -20,33 +22,42 @@ module.exports = {
   getAdd: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean(); // .lean to use it in a template
-      res.render("add.ejs", {posts: posts, user: req.user} );
+      if (!req.user) {
+        res.redirect("/login")
+      } else {
+        res.render("add.ejs", {posts: posts, user: req.user} );
+      }
     } catch (err) {
       console.log(err);
     }
   },
   getSaved: async (req, res) => {
     try {
-      // array of saved posts in Saved Model with post id only
-      const saved = await SavedPost.find({ user: req.user.id}).lean();
-      let promises = [];
 
-      // array of saved posts in Post Model
-      for (i=0; i < saved.length; i++ ) {
-        const found = await Post.find( {_id: saved[i].postID} );
-        promises = promises.concat(found)
-      }
-      const savedPosts = await Promise.all(promises);
-      const originalPosts = await Post.find({ user: req.user.id }).lean();
-      // combined posts
-      const all = savedPosts.concat(originalPosts);
+      if (!req.user) {
+        res.redirect("/login")
+      } else {
+        // array of saved posts in Saved Model with post id only
+        const saved = await SavedPost.find({ user: req.user.id}).lean();
+        let promises = [];
 
-      // order in alphabetical 
-      all.sort(function(a, b) {
-        return a.title.localeCompare(b.title);
-     });
-     
-      res.render("saved.ejs", {posts: all, user: req.user} );
+        // array of saved posts in Post Model
+        for (i=0; i < saved.length; i++ ) {
+          const found = await Post.find( {_id: saved[i].postID} );
+          promises = promises.concat(found)
+        }
+        const savedPosts = await Promise.all(promises);
+        const originalPosts = await Post.find({ user: req.user.id }).lean();
+        // combined posts
+        const all = savedPosts.concat(originalPosts);
+
+        // order in alphabetical 
+        all.sort(function(a, b) {
+          return a.title.localeCompare(b.title);
+          });
+
+        res.render("saved.ejs", {posts: all, user: req.user} );
+        }
     } catch (err) {
       console.log(err);
     }
@@ -55,9 +66,10 @@ module.exports = {
     try {
       const post = await Post.findById(req.params.id);
       const comments = await Comment.find({post: req.params.id, user: req.user}).sort({createdAt: "desc"}).lean();
+      const author = await User.findById(post.user).lean()
       const isSavedTrue = await SavedPost.find({user: req.user, postID: req.params.id}).lean()
 
-      res.render("post.ejs", { post: post, user: req.user, comments: comments, saved: isSavedTrue} );
+      res.render("post.ejs", { post: post, user: req.user, author: author, comments: comments, saved: isSavedTrue} );
     } catch (err) {
       console.log(err);
     }
@@ -117,22 +129,30 @@ module.exports = {
   },
   savePost: async (req, res) => {
     try {
-      console.log(req.params)
-      await SavedPost.create({
-        postID: req.params.id,
-        user: req.user.id,
-      });
-      console.log("Post has been saved!");
-      res.redirect(`/post/${req.params.id}`);
+      if (!req.user) {
+        res.redirect('/login')
+      } else {
+        await SavedPost.create({
+          postID: req.params.id,
+          user: req.user.id,
+        });
+        console.log("Post has been saved!");
+        res.redirect(`/post/${req.params.id}`);
+      }
+      
     } catch (err) {
       console.log(err);
     }
   },
   unsavePost: async (req, res) => {
     try {
-      await SavedPost.remove({ postID: req.params.id });``
-      console.log("Unsave Post");
-      res.redirect(`/post/${req.params.id}`);
+      if (!req.user) {
+        res.redirect('/login')
+      } else {
+        await SavedPost.remove({ postID: req.params.id });``
+        console.log("Unsave Post");
+        res.redirect(`/post/${req.params.id}`);
+      }
     }catch (err) {
       console.log(err);
     }

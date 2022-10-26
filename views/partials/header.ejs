@@ -17,12 +17,12 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
-    />
+    /> -->
     <script src="https://kit.fontawesome.com/27359b90e3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
@@ -30,29 +30,34 @@
     <header class="container">
 
       <nav>
-                <!-- 
-                  /// CORRECT FILE WHEN UPLOADING FILES TO SERVER
-                  if (window.location.pathname == "/saved") { 
-                    -->
-
-        <% if ("a" == "v") { %>
-          <i class="fa-solid fa-bookmark"></i>
-        <% } else { %>
-          <a href ="/saved"><i class="fa-regular fa-bookmark"></i></a>
-        <% } %>
-        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-
+<!-- LOGIN/SIGNUP -->
         <span>
           <% var user; %>
           <% user = user || undefined; %>
 
           <%if (user) { %>
-            hi, <a href="/profile"><%= user.userName %></a> /  <form class="removeForm" action="/logout" method="POST" id ="logout">
+                            <!--
+                  /// CORRECT FILE WHEN UPLOADING FILES TO SERVER
+                  if (window.location.pathname == "/saved") {
+                    -->
+            <% if ("a" == "v") { %>
+              <i class="fa-solid fa-bookmark"></i>
+            <% } else { %>
+              <a href ="/saved"><i class="fa-regular fa-bookmark"></i></a>
+            <% } %>
+            hi, <a href="/profile/<%= user.id %>"><%= user.userName %></a> /  <form class="removeForm" action="/logout" method="POST" id ="logout">
               <input type="submit" value="logout">
           </form>
           <% } else { %>
           <a href="/login"> Login</a> / <a href="/signup"> Signup</a>
           <% } %>
+        </span>
+        
+        <span>
+          <form action="/search" method="get">
+            <input id="search" name="search" type="text" placeholder="search">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
         </span>
       </nav>
 
@@ -61,7 +66,7 @@
         <span>What to eat...</span>
 
         <p style="font-size: 75px;"><a href="/add"><i class="fa-solid fa-circle-plus"></i></a></p>
-        
+
       </div>
     </header>
     <div class="scroll-up"><a href="#"><i class="fa-solid fa-arrow-up"></i></a></div>

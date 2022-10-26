@@ -29,4 +29,44 @@ module.exports = {
       res.redirect(`/post/${postID[0].post.valueOf()}`);
     }
   },
+  editComment: async (req, res) => {
+    try {
+      const comment = await Comment.findById(req.params.id).lean()
+      const post = await Post.findById(comment.post).lean()
+
+      if ( !comment ) {
+        return res.render("error/404")
+      }
+
+      if (post.user != req.user.id) {
+        res.redirect(`/post/${comment.post}`)
+      } else {
+        await Comment.findOneAndUpdate(
+          { _id: req.params.id }, // filter
+          {comment: req.body.title}
+          );
+        console.log("Comment Updated");
+        res.redirect(`/post/${comment.post}`);
+      }
+    } catch (err) {
+      res.redirect(`/post/${comment.post}`);
+    }
+  },editCommentPage: async (req, res) => {
+    try {
+      const comment = await Comment.findById(req.params.id).lean()
+      const post = await Post.findById(comment.post).lean()
+
+      if ( !comment ) {
+        return res.render("error/404")
+      }
+
+      if (post.user != req.user.id) {
+        res.redirect(`/post/${comment.post}`)
+      } else {
+        res.render("editComment.ejs", {user: req.user, comment: comment, post: post} );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };

@@ -5,11 +5,6 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  likes: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
   post: {
     type: mongoose.Schema.Types.ObjectId, // connected to the User model and it's id
     ref: "Post",

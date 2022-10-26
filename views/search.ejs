@@ -1,0 +1,14 @@
+<%- include('partials/header') -%>
+
+<h1>Searched for: <%= search %></h1>
+
+    <ul class="row list-unstyled">
+    <% for(var i=0; i<posts.length; i++) {%>
+        <li class="col-6 justify-content-between mt-5">
+        <a href="/post/<%= posts[i]._id%>"><%= posts[i].title%></a>
+        </li>
+    <% } %>
+    </ul>
+
+    
+<%- include('partials/footer') -%>

@@ -10,4 +10,21 @@ module.exports = {
       console.log(err);
     }
   },
+  getSearch: async (req, res) => {
+    try {
+      let search = req.query.search
+      const posts = await Post.find({
+        $text: {
+          $search: search,
+          $caseSensitive: false,
+        }})
+     
+      console.log(posts)
+
+      res.render('search.ejs', { posts: posts, search: search });
+     
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };

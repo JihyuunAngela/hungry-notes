@@ -1,12 +1,12 @@
 <%- include('partials/header') -%>
+
+<% var user; %>
+<% user = user || {id: undefined} %>
+
 <div class="container">
   <!-- ABOUT -->
     <div>
-        <p><strong>User Name</strong>: <%= user.userName %></p>
-        <p><strong>Email</strong>: <%= user.email %></p>
-        <form action="/logout" method="POST" id ="logout">
-          <input type="submit" value="logout">
-        </form>
+        <p><strong>User Name</strong>: <%= author.userName %></p>
     </div>
   <!-- LIST OF RECIPES -->
   <div>

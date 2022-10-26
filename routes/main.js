@@ -7,14 +7,19 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth"); // .. up one 
 
 //Main Routes - simplified for now
 router.get("/", homeController.getIndex);
-router.get("/profile", ensureAuth, postsController.getProfile); // when you want to use a middleware, use a second argument
-router.get("/add", ensureAuth, postsController.getAdd);
-router.get("/saved", ensureAuth, postsController.getSaved);
+
+//profiles
+router.get("/profile/:id", postsController.getAuthorProfile) // others profile
+
+router.get("/add", postsController.getAdd);
+router.get("/saved", postsController.getSaved);
 
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.post("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
+
+router.get("/search", homeController.getSearch);
 
 module.exports = router;

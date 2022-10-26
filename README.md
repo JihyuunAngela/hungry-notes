@@ -152,7 +152,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
     - [x] Add
     - [x] Delete
 - [x] Add option to choose between your own recipe vs a link to a recipe found online
-- [ ] Search db for recipes
+- [x] Search db for recipes
 - [ ] Add password reset for account users
 - [ ] Create folders for categories
 

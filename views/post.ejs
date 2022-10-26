@@ -1,11 +1,16 @@
 <%- include('partials/header') -%>
+
+<% var user; %>
+<% user = user || {id: undefined} %>
+
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
+      <% console.log(author._id) %>
 <!-- ORIGINAL RECIPE OR... -->
       <% if (post.type == 'OriginalRecipe') { %>
           <h2><%= post.title %></h2>
-          <span>Posted by <a href="/profile"><%= user.userName %></a></span>
+          <span>Posted by <a href="/profile/<%= author._id %>"><%= author.userName %></a></span>
           <img class="img-fluid" src="<%= post.image%>" />
           <h3>Ingredients</h3>
           <p><%= post.ingredients %></p>
@@ -15,7 +20,7 @@
 <!-- OR LINKED RECIPE -->
           <h2><%= post.title %></h2>
           <p><a href="<%= post.link %>" target="_blank">link</a></p>
-          <span>Posted by <a href="/profile"><%= user.userName %></a></span>
+          <span>Posted by <a href="/profile/<%= author._id %>"><%= author.userName %></a></span>
         <% } %>
 
 <!-- SAVED -->
@@ -51,8 +56,6 @@
 
         <h3 class="col-3">Likes: <%= post.likes %></h3>
 
-        <% var user; %>
-        <% user = user || {id: undefined} %>
 <!-- EDIT POST -->
       <%if(post.user == user.id && post.type == 'OriginalRecipe'){ %>
         <a href="/post/edit/<%= post.id %>"><i class="btn btn-primary fa-solid fa-pen-to-square"></i></a>
@@ -92,6 +95,7 @@
           <li class="col-6 justify-content-between mt-5">
             <%= comments[i].comment%>
             <%= comments[i].createdAt %>
+            <a href="/comments/edit/<%= comments[i]._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
             <form
             action="/comments/deleteComment/<%= comments[i]._id %>?_method=DELETE"
             method="POST"
