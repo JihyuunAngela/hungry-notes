@@ -217,3 +217,10 @@ label {
 .clearButton {
 	display: inline-block;
 }
+
+/* footer */
+
+footer {
+	margin: 40px;
+	text-align: right;
+}

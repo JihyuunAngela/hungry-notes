@@ -40,11 +40,10 @@
           <% user = user || undefined; %>
 
           <%if (user) { %>
-                            <!--
-                  /// CORRECT FILE WHEN UPLOADING FILES TO SERVER
-                  if (window.location.pathname == "/saved") {
-                    -->
-            <% if ("a" == "v") { %>
+                            
+                  <!-- /// CORRECT FILE WHEN UPLOADING FILES TO SERVER -->
+                  <% if (window.location.pathname == "/saved") {%>
+            <!-- <% if ("a" == "v") { %> -->
               <i class="fa-solid fa-bookmark"></i>
             <% } else { %>
               <a href ="/saved"><i class="fa-regular fa-bookmark"></i></a>
