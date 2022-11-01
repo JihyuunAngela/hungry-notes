@@ -1,6 +1,7 @@
 <%- include('partials/header') -%>
 
-<h1>Searched for: <%= search %></h1>
+<main>
+    <h1>Searched for: <%= search %></h1>
 
     <ul class="row list-unstyled">
     <% for(var i=0; i<posts.length; i++) {%>
@@ -9,6 +10,7 @@
         </li>
     <% } %>
     </ul>
+</main>
 
     
 <%- include('partials/footer') -%>

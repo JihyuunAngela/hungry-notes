@@ -77,11 +77,10 @@
 
 A place to keep all your favourite recipes.
 
-### Built With
+<!-- ### Built With
 
 * [![React][React.js]][React-url]
-
-<!-- * [![Next][Next.js]][Next-url]
+* [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Angular][Angular.io]][Angular-url]
@@ -123,11 +122,8 @@ This is an example of how to list things you need to use the software and how to
     ```
 4. Enter your PORT, DB and cloudinary name, API key and secret
    ```
-   PORT = 'ENTER PORT'
+    PORT = 'ENTER PORT'
     DB_STRING = 'ENTER DB_STRING'
-    CLOUD_NAME = 'ENTER CLOUD_NAME'
-    API_KEY = 'ENTER API_KEY'
-    API_SECRET = 'ENTER API_SECRET'
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

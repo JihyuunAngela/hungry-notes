@@ -1,36 +1,42 @@
 <%- include('partials/header') -%>
 
-<h2>Add a recipe</h2>
-<p class="link" id="addRecipeWithLink">Add a recipe using a link</p>
+<main>
+  <h2>ADD A RECIPE</h2>
 
-<div id="originalRecipe">
-  <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-    <div class="mb-3">
+  <div id="originalRecipe">
+    <span id="addRecipeWithLink">Use a link</span>
+
+    <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+      <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" name="title">
+      </div>
+      <div class="mb-3">
+        <label for="ingredients" class="form-label">Ingredients</label>
+        <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="instructions" class="form-label">Instructions</label>
+        <textarea class="form-control" id="instructions" name="instructions"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+    </form>
+  </div>
+
+
+  <!-- adding a recipe using a link -->
+  <div id="recipeLink" style="display: none;">
+    <form action="/post/createPostUsingLink" method="POST">
+      <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" id="title" name="title">
-    </div>
-    <div class="mb-3">
-      <label for="ingredients" class="form-label">Ingredients</label>
-      <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
-    </div>
-    <div class="mb-3">
-      <label for="instructions" class="form-label">Instructions</label>
-      <textarea class="form-control" id="instructions" name="instructions"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-  </form>
-</div>
-
-
-<!-- adding a recipe using a link -->
-<div id="recipeLink" style="display: none;">
-  <form action="/post/createPostUsingLink" method="POST">
-    <div class="mb-3">
-        <label for="link" class="form-label">Recipe Link</label>
+      </div>
+      <div>
+        <label for="link" class="form-label">Link</label>
         <input type="text" class="form-control" id="link" name="link">
-    </div>
-    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-  </form>
-</div>
-
+      </div>
+      <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+    </form>
+  </div>
+</main>
 <%- include('partials/footer') -%>

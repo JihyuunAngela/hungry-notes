@@ -3,23 +3,25 @@
 <% var user; %>
 <% user = user || {id: undefined} %>
 
-<div class="container">
-  <!-- ABOUT -->
+<main>
+  <div class="container">
+    <!-- ABOUT -->
+      <div>
+          <p><strong>User Name</strong>: <%= author.userName %></p>
+      </div>
+    <!-- LIST OF RECIPES -->
     <div>
-        <p><strong>User Name</strong>: <%= author.userName %></p>
+      <h2>Original Recipes</h2>
+      <ul class="">
+        <% for(var i=0; i<posts.length; i++) {%>
+        <li class="">
+          <a href="/post/<%= posts[i]._id%>">
+            <%= posts[i].title%>
+          </a>
+        </li>
+        <% } %>
+      </ul>
     </div>
-  <!-- LIST OF RECIPES -->
-  <div>
-    <h2>Original Recipes</h2>
-    <ul class="">
-      <% for(var i=0; i<posts.length; i++) {%>
-      <li class="">
-        <a href="/post/<%= posts[i]._id%>">
-          <%= posts[i].title%>
-        </a>
-      </li>
-      <% } %>
-    </ul>
   </div>
-</div>
+</main>
 <%- include('partials/footer') -%>

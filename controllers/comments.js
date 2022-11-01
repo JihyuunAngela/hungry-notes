@@ -60,11 +60,7 @@ module.exports = {
         return res.render("error/404")
       }
 
-      if (post.user != req.user.id) {
-        res.redirect(`/post/${comment.post}`)
-      } else {
         res.render("editComment.ejs", {user: req.user, comment: comment, post: post} );
-      }
     } catch (err) {
       console.log(err);
     }

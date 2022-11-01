@@ -1,47 +1,48 @@
 <%- include('partials/header') -%>
 
-<div>
-    
-    <h1>Edit Recipe</h1>
-<!-- ORIGINAL RECIPE -->
-    <% if(post.type == 'OriginalRecipe'){ %>
-        <div id="originalRecipe">
+<main>
+  <div>
+      
+      <h1>Edit Recipe</h1>
+  <!-- ORIGINAL RECIPE -->
+      <% if(post.type == 'OriginalRecipe'){ %>
+          <div id="originalRecipe">
+            <form
+            action="/post/editPost/<%= post._id %>?_method=PUT"
+            method="POST"
+            class="col-3"
+            >
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
+                </div>
+                <div class="mb-3">
+                  <label for="ingredients" class="form-label">Ingredients</label>
+                  <textarea class="form-control" id="ingredients" name="ingredients"><%= post.ingredients %></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="instructions" class="form-label">Instructions</label>
+                  <textarea class="form-control" id="instructions" name="instructions"><%= post.instructions %></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+              </form>
+            </div>
+      <% } else if (post.type == 'LinkedRecipe')  {%>
+  <!-- LINKED RECIPE -->
           <form
           action="/post/editPost/<%= post._id %>?_method=PUT"
           method="POST"
           class="col-3"
           >
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
-              </div>
-              <div class="mb-3">
-                <label for="ingredients" class="form-label">Ingredients</label>
-                <textarea class="form-control" id="ingredients" name="ingredients"><%= post.ingredients %></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="instructions" class="form-label">Instructions</label>
-                <textarea class="form-control" id="instructions" name="instructions"><%= post.instructions %></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
+          <div class="mb-3">
+              <label for="link" class="form-label">Link</label>
+              <input type="text" class="form-control" id="link" name="link" value="<%= post.link %>">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
           </div>
-    <% } else if (post.type == 'LinkedRecipe')  {%>
-<!-- LINKED RECIPE -->
-        <form
-        action="/post/editPost/<%= post._id %>?_method=PUT"
-        method="POST"
-        class="col-3"
-        >
-        <div class="mb-3">
-            <label for="link" class="form-label">Link</label>
-            <input type="text" class="form-control" id="link" name="link" value="<%= post.link %>">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>">
-        </div>
-        <button class="btn btn-primary fa-solid fa-pen-to-square" type="submit"></button>
-        </form>
-        <% } %>
-</div>
-
+          <button class="btn btn-primary fa-solid fa-pen-to-square" type="submit"></button>
+          </form>
+          <% } %>
+  </div>
+</main>
 <%- include('partials/footer') -%>

@@ -21,7 +21,7 @@ module.exports = {
      
       console.log(posts)
 
-      res.render('search.ejs', { posts: posts, search: search });
+      res.render('search.ejs', { posts: posts, search: search, user: req.user });
      
     } catch (err) {
       console.log(err);

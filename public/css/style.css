@@ -1,5 +1,32 @@
+* {
+	box-sizing: border-box;
+}
+
+.span {
+	display: inline-block;
+}
+
+p, pre, span, li {
+	font-family: 'Outfit', sans-serif;
+}
+li a {
+	text-decoration: none;
+}
+h2 {
+	text-transform: uppercase;
+}
+body {
+	background: #eae7dc;
+	padding:0;
+	margin: 0;
+}
+main {
+	margin: 40px;
+}
+
 header {
-	border-bottom: 1px solid #73AD21;
+	border-bottom: 1px solid #d8c3a5;
+	padding: 40px;
 }
 
 nav {
@@ -8,6 +35,43 @@ nav {
 	justify-content: space-between;
 }
 
+/* BANNER */
+
+.logo{
+	text-align: center;
+}
+
+.logo .title {
+	font-size: 5em;
+	font-family: 'Philosopher', sans-serif;
+	padding: 0;
+	margin: 10px 0;
+}
+
+.logo .subtitle {
+	margin: 5px 0;
+	color: #8e8d8a;
+	text-transform: uppercase;
+	font-family: 'Outfit', sans-serif;
+}
+
+.logo .addButton {
+	display: block;
+	font-size: 75px;
+	margin-top: 20px;
+}
+
+.addButton a:visited, .addButton a:link {
+	color: #e98074;
+}
+
+header a:visited, header a:link {
+	color: #e85a4f;
+	text-decoration: none;
+}
+header a:hover{
+	text-decoration: underline;
+}
 
 .scroll-up {
 	position: fixed;
@@ -15,9 +79,11 @@ nav {
 	bottom:0;
 	padding: 10px;
 	margin: 10px;
-	background-color: gray;
+	background-color: #d8c3a5;
 	border-radius: 200%;
-	border: 3px solid #73AD21;
+}
+.scroll-up a {
+	color: #eae7dc;
 }
 
 .half {
@@ -25,13 +91,129 @@ nav {
 	display: inline-block;
 }
 
-.link {
-	color: blue;
-	text-decoration: underline;
+/* ADD RECIPE */
+h2 {
+	margin-bottom: 10px;
+	padding: 0;
 }
+#addRecipeWithLink {
+	border: 1px solid #b49870;
+	color: #b49870;
+	border-radius: 20px;
+	padding: 2px 15px 0 15px;
+	cursor: pointer;
+}
+#addRecipeWithLink:hover {
+	color: #8e8d8a;
+	border: 1px solid #8e8d8a;
+}
+
+#originalRecipe form {
+	margin: 50px 0;
+}
+
+/* BUTTONS */
 
 .removeForm {
 	display: inline;
 	border:0;
 	background-color: #fff;
+}
+
+form, input, button, #logout.removeForm, textarea {
+	background-color: #ffffff00;
+	border: 0;
+}
+
+header .removeForm button {
+	font-size: xx-small;
+	color: #8e8d8a;
+	text-transform: uppercase
+}
+
+#searchbar {
+	border: 1px solid #8e8d8a;
+	border-radius: 20px;
+	padding: 5px
+}
+
+#searchbar button {
+	color: #8e8d8a;
+}
+
+input:active {
+	border: 0;
+	background-color: #ffffff00;
+}
+
+textarea:focus, input:focus {
+    color: #ff0000;
+}
+
+input, select, textarea{
+    color: #000;
+}
+
+form div {
+	border-bottom: 1px solid #e85a4f;
+	margin: 10px 0;
+}
+
+textarea {
+	width: 100%;
+	height: 7rem;
+	font-family: 'Outfit', sans-serif;
+}
+
+main input {
+	width: 100%;
+}
+
+main button {
+	background-color: #e85a4f;
+	color: #eae7dc;
+	padding: 2px 15px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.actionButtons * {
+	display: inline-block;
+}
+
+label {
+	font-weight: bolder;
+}
+
+/* POST PAGE */
+
+.author {
+	text-transform: uppercase;
+	font-size: xx-small;
+	color: #8e8d8a;
+}
+.author a {
+	color: #e85a4f
+}
+
+.editButton {
+	color: #e85a4f;
+	padding: 5px;
+	font-size: x-small;
+	margin: 0;
+}
+.fa-trash {
+	color: #e85a4f;
+	background-color: #ffffff00;
+	padding: 0;
+	font-size: x-small;
+	margin: 0;
+}
+.clearButton button {
+	background-color: #ffffff00;
+	padding: 5px;
+}
+
+.clearButton {
+	display: inline-block;
 }

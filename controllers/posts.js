@@ -76,8 +76,6 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
-      // Upload image to cloudinary
-      // const result = await cloudinary.uploader.upload(req.file.path);
       console.log(req.body)
       await Post.create({
         type: 'OriginalRecipe',
@@ -95,34 +93,15 @@ module.exports = {
   },
   createPostUsingLink: async (req, res) => {
     try {
-      const URL = req.body.link
-
-      request(URL, function (err, resp, main) {
-      if(err){
-        console.log(err);
-      }
-      else{
-        let $ = cheerio.load(main);
-
-        $('main').each(function(index){
-          const data = URL;
-          const name = $(this).find('h1').text();
-          // const image = $(this).find('figure').find('img').eq(0).attr('data-src') || $(this).find('figure').find('img').attr('data-jpibfi-src') || $(this).find('article').find('img').attr('src') || "https://res.cloudinary.com/dkyzxqrqb/image/upload/v1666297391/no-image_bwammd.png" ;
-
-          // save recipe to mongoDB
-          Post.create({
-            type: 'LinkedRecipe',
-            link: req.body.link,
-            title: name,
-            //imageLink: image,
-            likes: 0,
-            user: req.user.id,
-          });
-          console.log("Post has been added!");
-          res.redirect("/");
-        });
-        }
+      await Post.create({
+        type: 'LinkedRecipe',
+        link: req.body.link,
+        title: req.body.title,
+        likes: 0,
+        user: req.user.id,
       });
+      console.log("Post has been added!");
+      res.redirect("/");
     } catch (err) {
       console.log(err);
     }
@@ -212,15 +191,13 @@ module.exports = {
     try {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id, type: 'OriginalRecipe' }); // check to see if post is there
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId); // must require an img for function to work
       // Delete post from db
       await Post.deleteOne({ _id: req.params.id });
       await Comment.deleteMany( {post: req.params.id} )
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/");
     }
   },
   deletePostWithLink: async (req, res) => {
@@ -231,9 +208,9 @@ module.exports = {
       await Post.deleteOne({ _id: req.params.id });
       await Comment.deleteMany( {post: req.params.id} )
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/");
     }
   },
 };
